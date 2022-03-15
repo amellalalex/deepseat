@@ -31,11 +31,9 @@ FILE *fio_0 = &usart0_Stream;
  * 
  */
 void setup() {
-  init_uart0(103); // initialization
-	// booting message
-	fprintf_P(fio_0, PSTR("System Booted, built %s on %s\n\r"), __TIME__, __DATE__);
-	fprintf_P(fio_0, PSTR("Simple button test to help build your map\n"));
-  // Serialout("Starting up...\n");
+  // Init serial
+  init_uart0(103);
+  Serialout("Starting up...\n");
 }
 
 void loop() {
