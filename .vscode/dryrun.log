@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/alex/Documents/Dalhousie/2022/ENGI2203/Lab 5'
+make: Leaving directory `/Users/alex/Documents/Dalhousie/2022/ENGI2203/Lab 5'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+ 
