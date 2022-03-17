@@ -1,11 +1,11 @@
 /**
  * @file echo.h
- * @author Alex Amellal (loris@alexamellal.com)
+ * @author Alex Amellal (al434041@dal.ca)
  * @brief Echo-locator support
  * @version 0.1
- * @date 2022-03-15
+ * @date 2022-03-17
  * 
- * @copyright Dalhousie Space Systems Lab (c) 2022 
+ * @copyright Deepseat (c) 2022
  * 
  */
 

@@ -1,13 +1,13 @@
 /**
- * @file echo.h
- * @author Alex Amellal (loris@alexamellal.com)
+ * @file echo.c
+ * @author Alex Amellal (al434041@dal.ca)
  * @brief Echo-locator support
  * @version 0.1
- * @date 2022-03-15
+ * @date 2022-03-17
  * 
- * @copyright Deepseat (c) 2022 
+ * @copyright Deepseat (c) 2022
  * 
- * 
+ *
  * HY-SO5 Ultrasonic Distance Sensor
  * Trig -> PORTD7
  * Echo -> PORTB0

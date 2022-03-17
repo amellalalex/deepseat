@@ -1,6 +1,6 @@
 /**
  * @file global.h
- * @author Alex Amellal (loris@alexamellal.com)
+ * @author Alex Amellal (al434041@dal.ca)
  * @brief Global header for project
  * @version 0.1
  * @date 2022-03-15
