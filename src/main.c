@@ -5,26 +5,34 @@
  * @version 0.1
  * @date 2022-03-15
  * 
- * @copyright Dalhousie Space Systems Lab (c) 2022 
+ * @copyright Deepseat (c) 2022 
  * 
  */
 
-#define __AVR_ATmega328P__
+#include "global.h"
+#include "echo.h"
 
-// Standard C libraries
-#include <stdio.h>
-
-// Arduino libraries
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <avr/pgmspace.h>
-
-// Serial out
-#include "USART0.h"
 FILE *fio_0 = &usart0_Stream;
 
-// Utility macros
-#define Serialout(msg, ...) fprintf_P(fio_0, PSTR(msg), ##__VA_ARGS__)
+/**
+ * @brief Delay in ms
+ * 
+ * @param Delay Delay duration in ms
+ */
+void Delay(unsigned int Delay)
+{
+	int i;
+	for(i=0; i< Delay; i++)
+	{
+		TCCR0A = 0;                     // timer 1 control register A
+		TCCR0B = (1<<CS02) | (1<<CS00); // timer 1 control register b (puts it into clk/1024)
+		OCR0A = 7;                      // sets max timer value
+		TCNT0 = 0;                      // sets timer compare value to 0 (counter)
+		TIFR0 = (1 << OCF0A);           // 
+		while ( !(TIFR0 & (1<<OCF0A)));
+	}
+	TCCR0B = 0;
+}
 
 /**
  * @brief Setup function for the board
@@ -34,10 +42,21 @@ void setup() {
   // Init serial
   init_uart0(103);
   Serialout("Starting up...\n");
+
+  // Configure pins
+  DDRB |= D13;
+  DDRB = (1<<PORTB5);
 }
 
 void loop() {
-
+  int echo = get_echo();
+  if(echo == ECHO_INV) {
+    echo_reset();
+    Serialout("ECHO = ECHO_INV\n");
+  } else {
+    Serialout("ECHO = %u\n", echo);
+  }
+  Delay(500);
 }
 
 int main() {
