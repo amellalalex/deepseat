@@ -9,8 +9,10 @@
  * 
  */
 
+// Project headers
 #include "global.h"
 #include "echo.h"
+#include "servo.h"
 
 FILE *fio_0 = &usart0_Stream;
 
@@ -24,14 +26,21 @@ void Delay(unsigned int Delay)
 	int i;
 	for(i=0; i< Delay; i++)
 	{
-		TCCR0A = 0;                     // timer 1 control register A
-		TCCR0B = (1<<CS02) | (1<<CS00); // timer 1 control register b (puts it into clk/1024)
-		OCR0A = 7;                      // sets max timer value
-		TCNT0 = 0;                      // sets timer compare value to 0 (counter)
-		TIFR0 = (1 << OCF0A);           // 
-		while ( !(TIFR0 & (1<<OCF0A)));
+		TCCR2A = 0;                     // timer 1 control register A
+		TCCR2B = (1<<CS22) | (1<<CS20); // timer 1 control register b (puts it into clk/1024)
+		OCR2A = 7;                      // sets max timer value
+		TCNT2 = 0;                      // sets timer compare value to 0 (counter)
+		TIFR2 = (1 << OCF2A);           // 
+		while ( !(TIFR2 & (1<<OCF2A)));
 	}
-	TCCR0B = 0;
+	TCCR2B = 0;
+}
+
+void largeDelay(int delay) {
+  int increment = 10;
+  for(int x = 0; x < delay; x += increment) {
+    Delay(increment);
+  }
 }
 
 /**
@@ -44,19 +53,20 @@ void setup() {
   Serialout("Starting up...\n");
 
   // Configure pins
-  DDRB |= D13;
-  DDRB = (1<<PORTB5);
+  pinMode(D13, OUTPUT);
+  pinMode(D7, OUTPUT);
+  pinMode(D8, INPUT);
+  pinMode(D9, OUTPUT);
+
+  // Init servo module
+  servo_init();
 }
 
 void loop() {
-  int echo = get_echo();
-  if(echo == ECHO_INV) {
-    echo_reset();
-    Serialout("ECHO = ECHO_INV\n");
-  } else {
-    Serialout("ECHO = %u\n", echo);
+  for(int x = 1; x < 3; x++) {
+    servo_turn(x);
+    largeDelay(10000);
   }
-  Delay(500);
 }
 
 int main() {

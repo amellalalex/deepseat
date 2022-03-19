@@ -9,8 +9,8 @@
  * 
  *
  * HY-SO5 Ultrasonic Distance Sensor
- * Trig -> PORTD7
- * Echo -> PORTB0
+ * Trig -> PORTD7 (D7)
+ * Echo -> PORTB0 (D8)
  */
 
 #include "echo.h"
