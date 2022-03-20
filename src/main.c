@@ -68,16 +68,41 @@ void setup() {
   pinMode(D7, OUTPUT);
   pinMode(D8, INPUT);
   pinMode(D9, OUTPUT);
-
-  // Init servo module
-  servo_init();
 }
 
+/**
+ * @brief Main loop
+ * 
+ * NOTES:
+ * 
+ * Resource sharing
+ * ****************
+ * - The servo and echo locator share the timer1. As such, they must be used separately across time 
+ * (i.e.: one cycle only uses either one once)
+ */
 void loop() {
+  // Wiggle a bit
   for(int x = 1; x < 3; x++) {
+    Serialout("Turn ");
     servo_turn(x);
     largeDelay(10000);
   }
+  Serialout("\n");
+
+  // Echo locate
+  unsigned int echo = get_echo();
+  if(echo == ECHO_INV) {
+    Serialout("Echo invalid\n");
+    echo_reset();
+  } else {
+    Serialout("Echo = %u\n", echo);
+  }
+
+  // Trigger
+  if()
+
+  // Control cycle
+  largeDelay(10000);
 }
 
 int main() {
