@@ -122,6 +122,7 @@ int echo_detect(unsigned int threshold) {
   unsigned int echo = get_echo();
   if(echo == ECHO_INV) {
     echo_reset();
+		Delay(ECHO_INV_DELAY);
 		return 0;
   }
 

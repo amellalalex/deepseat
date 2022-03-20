@@ -81,32 +81,15 @@ void setup() {
  * (i.e.: one cycle only uses either one once)
  */
 void loop() {
-  // Wiggle a bit
-  // for(int x = 1; x < 3; x++) {
-  //   Serialout("Turn ");
-  //   servo_turn(x);
-  //   largeDelay(10000);
-  // }
-  // Serialout("\n");
-
-  // Echo locate
-  unsigned int echo = get_echo();
-  if(echo == ECHO_INV) {
-    Serialout("Echo invalid\n");
-    echo_reset();
-  } else {
-    Serialout("Echo = %u\n", echo);
-  }
-
   // Trigger
-  if(echo < 10000) {
+  if(echo_detect(10000)) {
     Serialout("Intruder detected!!\n");
     // Vibrate
-    servo_vibrate(10);
+    servo_vibrate(3);
   }
 
   // Control cycle
-  largeDelay(10000);
+  Delay(500);
 }
 
 int main() {

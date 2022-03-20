@@ -26,6 +26,7 @@
 
 // Special values
 #define ECHO_INV 32767
+#define ECHO_INV_DELAY 100
 
 /**
  * @brief Get the echo object

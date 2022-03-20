@@ -63,4 +63,11 @@ else p##_DDR |= p;\
 #define D13_PIN PINB
 #define D13_DDR DDRB
 
+/**
+ * @brief Delay in ms
+ * 
+ * @param Delay Delay duration in ms
+ */
+void Delay(unsigned int Delay);
+
 #endif
