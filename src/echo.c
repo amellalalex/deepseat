@@ -15,9 +15,9 @@
 
 #include "echo.h"
 
-volatile unsigned char MIP;
-volatile unsigned int ECHO;
-volatile unsigned int Tick;
+static volatile unsigned char MIP;
+static volatile unsigned int ECHO;
+static volatile unsigned int Tick;
 
 
 /******************************************************************************
@@ -75,7 +75,7 @@ Function to raise the pulse of the trigger.
 Initialize the counter to generate an interrupt when the counter reaches the count 
 // defined in Output Compare Register A (10 usec)
 ******************************************************************************/
-void Trigger( void ) {		// Config Timer 1 for 10 to 15uS pulse.
+static void Trigger( void ) {		// Config Timer 1 for 10 to 15uS pulse.
 	if(MIP == 0) {	// Don't allow re-trigger.
 		MIP = 1;				// Set Measurement in progress FLAG
 		DDRD |= (1<<DDD7);		// PD7 as Output for Trigger pulse.
@@ -95,41 +95,6 @@ void Trigger( void ) {		// Config Timer 1 for 10 to 15uS pulse.
 	}
 }
 
-
-/******************************************************************************
-******************************************************************************/
-// int main(void){
-	
-// 	uint8_t key;
-	
-// 	init_uart0(103);
-
-// 	sei();
-	
-// 	// fprintf_P(fio_0,PSTR("Hello\n\n\r")	);
-
-// 	while (1 == 1) {
-// 		while(uart0_RxCount() == 0){};
-		
-// 		key = uart0_getc();
-		
-// 		switch(key) {
-// 			case 13:
-// 			// fprintf_P(fio_0,PSTR("\n\r")	);
-// 			break;
-
-// 			case 'T':
-// 			case 't':
-// 			Trigger();
-// 			while (MIP == 1) {};
-// 			if(MIP != 0xFF)
-// 				fprintf_P(fio_0,PSTR("Echo is %duS\n\n\r"), ECHO >>= 1);
-// 			break;
-			
-// 		}
-// 	}
-// }
-
 unsigned int get_echo() {
   Trigger();
   while(MIP == 1) {};
@@ -144,4 +109,26 @@ void echo_reset() {
   MIP = 0;
   Tick = 0;
   ECHO = 0;
+}
+
+/**
+ * @brief Detect presence of object within echo value range.
+ * 
+ * @param threshold Threshold echo value to consider object within range.
+ * @return 0 for no detection, 1 for detection (false/true)
+ */
+int echo_detect(unsigned int threshold) {
+	// Echo locate
+  unsigned int echo = get_echo();
+  if(echo == ECHO_INV) {
+    echo_reset();
+		return 0;
+  }
+
+  // Trigger
+  if(echo < threshold) {
+		return 1;
+  } else {
+		return 0;
+	}
 }

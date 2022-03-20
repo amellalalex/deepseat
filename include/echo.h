@@ -25,10 +25,27 @@
 #include "USART0.h"
 
 // Special values
-#define ECHO_INV 1111
+#define ECHO_INV 32767
 
-void Trigger();
+/**
+ * @brief Get the echo object
+ * 
+ * @return echo value
+ */
 unsigned int get_echo();
+
+/**
+ * @brief Reset internal values for echo. Useful in case of invalid echo value
+ * 
+ */
 void echo_reset();
+
+/**
+ * @brief Detect presence of object within echo value range.
+ * 
+ * @param threshold Threshold echo value to consider object within range.
+ * @return 0 for no detection, 1 for detection (false/true)
+ */
+int echo_detect(unsigned int threshold);
 
 #endif
