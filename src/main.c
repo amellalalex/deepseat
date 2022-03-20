@@ -82,12 +82,12 @@ void setup() {
  */
 void loop() {
   // Wiggle a bit
-  for(int x = 1; x < 3; x++) {
-    Serialout("Turn ");
-    servo_turn(x);
-    largeDelay(10000);
-  }
-  Serialout("\n");
+  // for(int x = 1; x < 3; x++) {
+  //   Serialout("Turn ");
+  //   servo_turn(x);
+  //   largeDelay(10000);
+  // }
+  // Serialout("\n");
 
   // Echo locate
   unsigned int echo = get_echo();
@@ -99,7 +99,16 @@ void loop() {
   }
 
   // Trigger
-  if()
+  if(echo < 10000) {
+    Serialout("Intruder detected!!\n");
+    // Vibrate
+    for(int x = 0; x < 10; x++) {
+      servo_turn(1);
+      Delay(1000);
+      servo_turn(2);
+      Delay(1000);
+    }
+  }
 
   // Control cycle
   largeDelay(10000);
