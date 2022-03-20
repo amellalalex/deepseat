@@ -12,7 +12,7 @@
 #include "servo.h"
 
 void servo_init() {
-	DDRB = (1<<PORTB1);  	// Assign OC1A pin as output.
+	// OC1A pin has been assigned as output.
 
 	// PWM Mode with Phase and Frequency Correction and pre-scale of 1/1.
 	TCCR1A = (1<<COM1A1) ;
