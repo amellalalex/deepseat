@@ -23,6 +23,7 @@ void servo_init() {
 }
 
 void servo_turn(int state) {
+	servo_init();
   switch(state) {
 			case '0':
       case 0:
