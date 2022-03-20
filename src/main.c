@@ -102,12 +102,7 @@ void loop() {
   if(echo < 10000) {
     Serialout("Intruder detected!!\n");
     // Vibrate
-    for(int x = 0; x < 10; x++) {
-      servo_turn(1);
-      Delay(1000);
-      servo_turn(2);
-      Delay(1000);
-    }
+    servo_vibrate(10);
   }
 
   // Control cycle

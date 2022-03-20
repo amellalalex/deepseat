@@ -11,7 +11,7 @@
 
 #include "servo.h"
 
-void servo_init() {
+static void servo_init() {
 	// OC1A pin has been assigned as output.
 
 	// PWM Mode with Phase and Frequency Correction and pre-scale of 1/1.
@@ -42,4 +42,18 @@ void servo_turn(int state) {
 				break;
 
 		}
+}
+
+/**
+ * @brief Makes the motor vibrate n times
+ * 
+ * @param n Number of times to oscillate
+ */
+void servo_vibrate(int n) {
+	for(int x = 0; x < n; x++) {
+      servo_turn(1);
+      Delay(SERVO_VIBRATE_DELAY);
+      servo_turn(2);
+      Delay(SERVO_VIBRATE_DELAY);
+    }
 }

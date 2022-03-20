@@ -21,7 +21,21 @@
 #define P90 400
 #define Z 1400
 
-void servo_init();
-void servo_turn();
+// General settings
+#define SERVO_VIBRATE_DELAY 1000
+
+/**
+ * @brief Controls the position of the servo motor
+ * 
+ * @param key 0 = 0deg, 1 = -90deg, 2 = +90deg
+ */
+void servo_turn(int key);
+
+/**
+ * @brief Makes the motor vibrate n times
+ * 
+ * @param n Number of times to oscillate
+ */
+void servo_vibrate(int n);
 
 #endif 
