@@ -9,6 +9,17 @@
  * 
  */
 
+/**
+ * NOTES:
+ * 
+ * Timers in use
+ * *************
+ * timer0 - 
+ * timer1 - servo motor & echo locator
+ * timer2 - delay function
+ * 
+ */
+
 // Project headers
 #include "global.h"
 #include "echo.h"
@@ -37,7 +48,7 @@ void Delay(unsigned int Delay)
 }
 
 void largeDelay(int delay) {
-  int increment = 10;
+  int increment = 254;
   for(int x = 0; x < delay; x += increment) {
     Delay(increment);
   }
