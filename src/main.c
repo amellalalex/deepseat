@@ -68,6 +68,8 @@ void setup() {
   pinMode(D7, OUTPUT);
   pinMode(D8, INPUT);
   pinMode(D9, OUTPUT);
+
+  analogStart();
 }
 
 /**
@@ -82,14 +84,19 @@ void setup() {
  */
 void loop() {
   // Trigger
-  if(echo_detect(10000)) {
-    Serialout("Intruder detected!!\n");
-    // Vibrate
-    servo_vibrate(3);
-  }
+  // if(echo_detect(10000)) {
+  //   Serialout("Intruder detected!!\n");
+  //   // Vibrate
+  //   servo_vibrate(3);
+  // }
+
+  // Serialout("analogRead(A0) = %d\n", analogRead(A0));
+  int darkness_val = analogRead(A0);
+  int darkness_percent = (darkness_val-15)*100/150;
+  Serialout("brightness = %d\n", darkness_percent);
 
   // Control cycle
-  Delay(500);
+  Delay(10000);
 }
 
 int main() {
