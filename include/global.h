@@ -31,6 +31,7 @@ extern FILE *fio_0;
 #define HIGH 1
 #define INPUT 0
 #define OUTPUT 1
+#define ANALOG 2
 #define Serialout(msg, ...) fprintf_P(fio_0, PSTR(msg), ##__VA_ARGS__)
 #define digitalRead(p) p##_PIN & p
 #define digitalWrite(p, val) ({ \
@@ -41,8 +42,23 @@ extern FILE *fio_0;
 if(m == INPUT) p##_DDR &= ~p;\
 else p##_DDR |= p;\
 })
+#define analogStart() ({\
+ADMUX |= (1<<ADLAR);\
+ADCSRA |= (1<<ADEN);\
+ADCSRA |= (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);\
+ADMUX |= (1<<REFS0);\
+\
+\
+})
+#define analogRead(p) ({\
+  DIDR0 |= p##_DIDR;\
+  ADMUX |= p##_MUX;\
+  ADCSRA |= (1<<ADSC);\
+  while(ADCSRA & (1<<ADSC));\
+  ADCH;\
+})
 
-// Pins
+// Digital Pins
 #define D7 (1<<PORTD7)
 #define D7_PORT PORTD
 #define D7_PIN PIND
@@ -62,6 +78,10 @@ else p##_DDR |= p;\
 #define D13_PORT PORTB
 #define D13_PIN PINB
 #define D13_DDR DDRB
+
+// Analog pins
+#define A0_DIDR (1<<ADC0D)
+#define A0_MUX 0b11110000
 
 /**
  * @brief Delay in ms
