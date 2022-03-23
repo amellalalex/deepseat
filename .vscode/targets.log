@@ -6,19 +6,23 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Thu Mar 10 10:28:05 2022
+# Make data base, printed on Tue Mar 22 23:11:39 2022
 
 # Variables
 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
+ 
 ?F = $(notdir $?)
+# makefile (from `Makefile', line 8)
+SRC := src/USART0.c src/echo.c src/main.c src/servo.c src/solar.c
 # environment
 VSCODE_LOG_NATIVE = false
-# environment
-NVM_INC = /Users/alex/.nvm/versions/node/v14.15.5/include/node
+# makefile (from `Makefile', line 5)
+TARGET = main
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -26,33 +30,27 @@ NVM_INC = /Users/alex/.nvm/versions/node/v14.15.5/include/node
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/alex/Documents/Dalhousie/2022/ENGI2203/Lab 5
+CURDIR := /Users/alex/Documents/Dalhousie/2022/ENGI2203/Demo
 # makefile
 SHELL = /bin/sh
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile
-MAKEFILE_LIST := 
+# makefile (from `Makefile', line 3)
+CFLAGS = -std=c99 -Wall -g -Os -mmcu=${MCU}
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-P9K_SSH = 0
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/fq/74hc2nv13qvfpczrz_y82ftw0000gn/T/vscode-ipc-68427229-55d1-4e9a-8c53-7d49090a3d52.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/fq/74hc2nv13qvfpczrz_y82ftw0000gn/T/vscode-ipc-5c4215c2-2f9a-49f5-aa42-2694b486ca00.sock
 # environment
 VSCODE_CWD = /
 # environment
-GUILE_SYSTEM_EXTENSIONS_PATH = /opt/homebrew/lib/guile/3.0/extensions
-# environment
-PATH = /opt/homebrew/opt/mysql-client/bin:/opt/homebrew/opt/openjdk/bin:/Users/alex/.nvm/versions/node/v14.15.5/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/Library/Apple/usr/bin:/usr/local/lib/flutter/bin:/usr/local/bin/md2html
-# environment
-LSCOLORS = Gxfxcxdxbxegedabagacad
-# environment
-NVM_BIN = /Users/alex/.nvm/versions/node/v14.15.5/bin
+PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -60,13 +58,13 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.a26sXipEDd/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.0iShP2AkBW/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-PWD = /Users/alex/Documents/Dalhousie/2022/ENGI2203/Lab 5
+PWD = /Users/alex/Documents/Dalhousie/2022/ENGI2203/Demo
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
@@ -76,15 +74,13 @@ HOME = /Users/alex
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/alex/Library/Application Support/Code/CachedData/8908a9ca0f221f36507231afb39d2d8d1e182702
+VSCODE_CODE_CACHE_PATH = /Users/alex/Library/Application Support/Code/CachedData/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1
 # environment
 LOGNAME = alex
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
-# environment
-NVM_CD_FLAGS = -q
-# environment
-ZSH = /Users/alex/.oh-my-zsh
+# makefile (from `Makefile', line 9)
+DEV = /dev/tty.usbserial-11140
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -97,16 +93,16 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 SHLVL = 1
-# environment
-GUILE_LOAD_PATH = /opt/homebrew/share/guile/site/3.0
+# makefile (from `Makefile', line 2)
+CC = avr-gcc
 # default
 MAKE_VERSION := 3.81
 # environment
 USER = alex
 # makefile
-.DEFAULT_GOAL := 
-# environment
-LESS = -R
+.DEFAULT_GOAL := all
+# makefile (from `Makefile', line 6)
+INCLUDE = include
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
@@ -118,7 +114,7 @@ TMPDIR = /var/folders/fq/74hc2nv13qvfpczrz_y82ftw0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/alex/Library/Application Support/Code/1.65.1-main.sock
+VSCODE_IPC_HOOK = /Users/alex/Library/Application Support/Code/1.65.2-main.sock
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -126,13 +122,13 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-NVM_DIR = /Users/alex/.nvm
-# environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.41791564.41791570
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.42162223.42162229
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
+# makefile (from `Makefile', line 1)
+MCU = atmega328p
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x52
 # environment
@@ -142,13 +138,11 @@ MAKEFILES :=
 # automatic
 <F = $(notdir $<)
 # environment
-PAGER = less
-# environment
 LC_ALL = C
-# environment
-GUILE_LOAD_COMPILED_PATH = /opt/homebrew/lib/guile/3.0/site-ccache
 # automatic
 ^F = $(notdir $^)
+# makefile (from `Makefile', line 4)
+OBJCOPY = avr-objcopy
 # default
 SUFFIXES := 
 # default
@@ -158,9 +152,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 94041
+VSCODE_PID = 80369
 # variable set hash-table stats:
-# Load=74/1024=7%, Rehash=0, Collisions=1/95=1%
+# Load=70/1024=7%, Rehash=0, Collisions=5/105=5%
 
 # Pattern-specific Variable Values
 
@@ -168,9 +162,11 @@ VSCODE_PID = 94041
 
 # Directories
 
-# . (device 16777231, inode 39409263): 13 files, no impossibilities.
+# . (device 16777231, inode 42179587): 11 files, no impossibilities.
+ 
+# src (device 16777231, inode 42180439): 7 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 18 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -178,14 +174,35 @@ VSCODE_PID = 94041
 
 # Files
 
-# Not a target:
 all:
 #  Command-line target.
-#  Implicit rule search has been done.
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `'
 #  File does not exist.
-#  File has not been updated.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := all
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+# Load=8/32=25%, Rehash=0, Collisions=4/19=21%
+#  commands to execute (from `Makefile', line 12):
+	${CC} ${CFLAGS} -I ${INCLUDE} -o ${TARGET}.bin ${SRC} -lm
+	${OBJCOPY} -j .text -j .data -O ihex ${TARGET}.bin ${TARGET}.hex
+	
 
 # Not a target:
 .SUFFIXES:
@@ -195,21 +212,10 @@ all:
 
 # Not a target:
 Makefile:
-#  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-03-22 23:11:18
 #  File has been updated.
-#  Failed to be updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-makefile:
-#  A default, MAKEFILES, or -include/sinclude makefile.
-#  Implicit rule search has been done.
-#  File does not exist.
-#  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -219,31 +225,35 @@ makefile:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-GNUmakefile:
-#  A default, MAKEFILES, or -include/sinclude makefile.
-#  Implicit rule search has been done.
-#  File does not exist.
-#  File has been updated.
-#  Failed to be updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 19):
+	rm ${TARGET}.bin ${TARGET}.hex
+	
+
+flash: all
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 16):
+	avrdude -v -p ${MCU} -carduino -P${DEV} -b57600 -D -U flash:w:${TARGET}.hex:i
+	
 
 # files hash-table stats:
-# Load=6/1024=1%, Rehash=0, Collisions=0/17=0%
+# Load=6/1024=1%, Rehash=0, Collisions=0/21=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
 
-# # of strings in strcache: 0
-# # of strcache buffers: 0
-# strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
-# strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Mar 10 10:28:05 2022
+# Finished Make data base on Tue Mar 22 23:11:39 2022
 
- 
-make: *** No rule to make target `all'.  Stop.
  

@@ -9,7 +9,7 @@ SRC:=$(wildcard src/*.c)
 DEV=/dev/tty.usbserial-11140
 
 all:
-	${CC} ${CFLAGS} -I ${INCLUDE} -o ${TARGET}.bin ${SRC}
+	${CC} ${CFLAGS} -I ${INCLUDE} -o ${TARGET}.bin ${SRC} -lm
 	${OBJCOPY} -j .text -j .data -O ihex ${TARGET}.bin ${TARGET}.hex
 
 flash: all

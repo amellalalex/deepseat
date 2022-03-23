@@ -24,8 +24,21 @@
 #include "global.h"
 #include "echo.h"
 #include "servo.h"
-
+#include "solar.h"
+#include "hud.h"
+#include "timectrl.h"
 FILE *fio_0 = &usart0_Stream;
+
+// Settings
+#define SERVO_PERIOD 50
+#define SERVO_PERIOD_GRACE 50
+#define ECHO_PERIOD 1
+#define DEPTH_PERIOD 1
+
+static volatile unsigned int servo_time = 0;
+static volatile unsigned int echo_time = 0;
+static volatile unsigned int depth_time = 0;
+static volatile unsigned int servo_echo_time = 0;
 
 /**
  * @brief Delay in ms
@@ -47,13 +60,6 @@ void Delay(unsigned int Delay)
 	TCCR2B = 0;
 }
 
-void largeDelay(int delay) {
-  int increment = 254;
-  for(int x = 0; x < delay; x += increment) {
-    Delay(increment);
-  }
-}
-
 /**
  * @brief Setup function for the board
  * 
@@ -64,12 +70,24 @@ void setup() {
   Serialout("Starting up...\n");
 
   // Configure pins
-  pinMode(D13, OUTPUT);
+  pinMode(D2, OUTPUT);
+  pinMode(D3, OUTPUT);
+  pinMode(D4, OUTPUT);
+  pinMode(D5, OUTPUT);
+  pinMode(D6, OUTPUT);
   pinMode(D7, OUTPUT);
   pinMode(D8, INPUT);
   pinMode(D9, OUTPUT);
+  pinMode(D13, OUTPUT);
 
+  // Enable analog reading
   analogStart();
+
+  // Enable time based flow control
+  // timectrl_init();
+  // timectrl_update(&servo_time);
+  // timectrl_update(&echo_time);
+  // timectrl_update(&depth_time);
 }
 
 /**
@@ -82,20 +100,82 @@ void setup() {
  * - The servo and echo locator share the timer1. As such, they must be used separately across time 
  * (i.e.: one cycle only uses either one once)
  */
+// void loop() {
+//   // Echo locator
+//   if(echo_time > ECHO_PERIOD) {
+    
+//     echo_time = 0;
+//   }
+
+  
+
+//   if(servo_echo_time < SERVO_PERIOD) {
+//     if(echo_detect(2000)) {
+//       Serialout("Intruder detected!!\n");
+//       // Vibrate
+//       hud_warn(HIGH);
+//     } else {
+//       // Serialout("Nothing detected.\n");
+//       hud_warn(LOW);
+//     }
+//   } else if(SERVO_PERIOD < servo_echo_time && servo_echo_time < SERVO_PERIOD + SERVO_PERIOD_GRACE) {
+//     // Rotating platform
+//     static int prev_key = 1;
+//     if(servo_time > SERVO_PERIOD) {
+//       if(prev_key == 1) {
+//         prev_key = 2;
+//       } else {
+//         prev_key = 1;
+//       }
+//       servo_turn(SERVO1, prev_key);
+//       servo_time = 0;
+//     }
+//   } else {
+//     servo_echo_time = 0;
+//   }
+
+//   // Depth detector
+//   if(depth_time > DEPTH_PERIOD) {
+//     // Serialout("Depth collecting...");
+//     int depth = get_depth();
+//     hud_display_depth(depth);
+//     // Serialout("Done!\n");
+//     depth_time = 0;
+//   }
+
+//   timectrl_update(&servo_time);
+//   timectrl_update(&echo_time);
+//   timectrl_update(&depth_time);
+//   timectrl_update(&servo_echo_time);
+
+//   // Debug
+//   // Serialout("echo_time = %u\n", echo_time);
+// }
+
 void loop() {
-  // Trigger
-  // if(echo_detect(10000)) {
-  //   Serialout("Intruder detected!!\n");
-  //   // Vibrate
-  //   servo_vibrate(3);
-  // }
+  // Echo
+  if(echo_detect(2000)) {
+    Serialout("Intruder detected!!\n");
+    // Vibrate
+    hud_warn(HIGH);
+  } else {
+    // Serialout("Nothing detected.\n");
+    hud_warn(LOW);
+  }
 
-  // Serialout("analogRead(A0) = %d\n", analogRead(A0));
-  int darkness_val = analogRead(A0);
-  int darkness_percent = (darkness_val-15)*100/150;
-  Serialout("brightness = %d\n", darkness_percent);
+  // Rotating platform
+  static int prev_key = 1;
+  servo_turn(prev_key);
+  if(prev_key == 1) {
+    prev_key = 2;
+  } else {
+    prev_key = 1;
+  }
 
-  // Control cycle
+  // Depth detector
+  int depth = get_depth();
+  hud_display_depth(depth);
+
   Delay(10000);
 }
 

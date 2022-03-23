@@ -7,6 +7,9 @@
  * 
  * @copyright Deepseat (c) 2022
  * 
+ * HY-SO5 Ultrasonic Distance Sensor
+ * Trig -> PORTD7 (D7)
+ * Echo -> PORTB0 (D8)
  */
 
 #ifndef DEEPSEAT_ECHO_H
@@ -26,7 +29,10 @@
 
 // Special values
 #define ECHO_INV 32767
+#define ECHO_NOTREADY 32767
 #define ECHO_INV_DELAY 100
+#define ECHO_MAX_WAIT 10000
+#define ECHO_WAIT_LOOP 10
 
 /**
  * @brief Get the echo object

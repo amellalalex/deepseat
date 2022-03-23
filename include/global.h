@@ -55,10 +55,36 @@ ADMUX |= (1<<REFS0);\
   ADMUX |= p##_MUX;\
   ADCSRA |= (1<<ADSC);\
   while(ADCSRA & (1<<ADSC));\
+  ADMUX &= ~p##_MUX;\
   ADCH;\
 })
 
 // Digital Pins
+#define D2 (1<<PORTD2)
+#define D2_PORT PORTD
+#define D2_PIN PIND
+#define D2_DDR DDRD
+
+#define D3 (1<<PORTD3)
+#define D3_PORT PORTD
+#define D3_PIN PIND
+#define D3_DDR DDRD
+
+#define D4 (1<<PORTD4)
+#define D4_PORT PORTD
+#define D4_PIN PIND
+#define D4_DDR DDRD
+
+#define D5 (1<<PORTD5)
+#define D5_PORT PORTD
+#define D5_PIN PIND
+#define D5_DDR DDRD
+
+#define D6 (1<<PORTD6)
+#define D6_PORT PORTD
+#define D6_PIN PIND
+#define D6_DDR DDRD
+
 #define D7 (1<<PORTD7)
 #define D7_PORT PORTD
 #define D7_PIN PIND
@@ -81,7 +107,10 @@ ADMUX |= (1<<REFS0);\
 
 // Analog pins
 #define A0_DIDR (1<<ADC0D)
-#define A0_MUX 0b11110000
+#define A0_MUX 0
+
+#define A1_DIDR (1<<ADC1D)
+#define A1_MUX (1<<MUX0)
 
 /**
  * @brief Delay in ms

@@ -7,6 +7,10 @@
  * 
  * @copyright Deepseat (c) 2022
  * 
+ * 
+ * Pinmap
+ * ******
+ * - PWM control output (D9)
  */
 
 #ifndef DEEPSEAT_INCLUDE_SERVO_H
@@ -14,6 +18,10 @@
 
 // Project headers
 #include "global.h"
+
+// Servo devices
+#define SERVO1 1
+#define SERVO2 2
 
 // Special values
 #define TOP 20000 
@@ -23,6 +31,8 @@
 
 // General settings
 #define SERVO_VIBRATE_DELAY 1000
+#define SERVO_MOVE_DELAY 10000
+#define SERVO_MOVE_LOOP 10
 
 /**
  * @brief Controls the position of the servo motor
@@ -36,6 +46,8 @@ void servo_turn(int key);
  * 
  * @param n Number of times to oscillate
  */
-void servo_vibrate(int n);
+// void servo_vibrate(int dev, int n);
+
+void servo_toggle();
 
 #endif 

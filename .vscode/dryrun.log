@@ -1,6 +1,6 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/alex/Documents/Dalhousie/2022/ENGI2203/Lab 5'
-make: Leaving directory `/Users/alex/Documents/Dalhousie/2022/ENGI2203/Lab 5'
- 
-make: *** No targets specified and no makefile found.  Stop.
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/alex/Documents/Dalhousie/2022/ENGI2203/Demo'
+avr-gcc -std=c99 -Wall -g -Os -mmcu=atmega328p -I include -o main.bin src/USART0.c src/echo.c src/main.c src/servo.c src/solar.c -lm
+avr-objcopy -j .text -j .data -O ihex main.bin main.hex
+make: Leaving directory `/Users/alex/Documents/Dalhousie/2022/ENGI2203/Demo'
  

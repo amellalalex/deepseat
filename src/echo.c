@@ -96,11 +96,22 @@ static void Trigger( void ) {		// Config Timer 1 for 10 to 15uS pulse.
 }
 
 unsigned int get_echo() {
+	// Serialout("Sending trigger....");
   Trigger();
-  while(MIP == 1) {};
-  if(MIP != 0xFF) {
+	// Serialout("Done.   ");
+  // while(MIP == 1) {};
+	// Serialout("Waiting for echo....");
+	for(int i = 0; MIP == 1 && i < ECHO_WAIT_LOOP; i++) {
+		for(int x = 0; MIP == 1 && x < ECHO_MAX_WAIT; x++) {};
+	}
+	if(MIP == 1) {
+		// Serialout("Echo wasnt ready\n");
+		return ECHO_NOTREADY;
+	} else if(MIP != 0xFF) {
+		// Serialout("Echo good!\n");
     return ECHO;
   } else {
+		// Serialout("Echo invalid\n");
     return ECHO_INV;
   }
 }
@@ -120,9 +131,8 @@ void echo_reset() {
 int echo_detect(unsigned int threshold) {
 	// Echo locate
   unsigned int echo = get_echo();
-  if(echo == ECHO_INV) {
+  if(echo == ECHO_INV || echo == ECHO_NOTREADY) {
     echo_reset();
-		Delay(ECHO_INV_DELAY);
 		return 0;
   }
 
